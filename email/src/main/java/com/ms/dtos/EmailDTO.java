@@ -1,19 +1,17 @@
-package com.ms.email.dtos;
+package com.ms.dtos;
 
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class EmailDto {
+public class EmailDTO {
 	
 	@NotBlank
 	private String ownerRef;
 	@NotBlank
 	@Email
-	private String emailFrom;
+	private String emailFron;
 	@NotBlank
 	@Email
 	private String emailTo;
@@ -21,5 +19,4 @@ public class EmailDto {
 	private String subject;
 	@NotBlank
 	private String text;
-
 }

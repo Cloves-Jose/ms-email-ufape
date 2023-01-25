@@ -1,29 +1,28 @@
-package com.ms.email.controllers;
-
-import javax.validation.Valid;
+package com.ms.controllers;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.ms.email.dtos.EmailDto;
-import com.ms.email.models.EmailModel;
-import com.ms.email.services.EmailService;
+import com.ms.dtos.EmailDTO;
+import com.ms.models.EmailModel;
+import com.ms.services.EmailService;
 
-@RestController
+import jakarta.validation.Valid;
+
+@Controller
 public class EmailController {
-
+	
 	@Autowired
 	EmailService emailService;
 	
 	@PostMapping("/sending-email")
-	public ResponseEntity<EmailModel> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
+	public ResponseEntity<EmailModel> sendingEmail(@RequestBody @Valid EmailDTO emailDto) {
 		EmailModel emailModel = new EmailModel();
-		System.out.print(emailModel);
 		BeanUtils.copyProperties(emailDto, emailModel);
 		emailService.sendEmail(emailModel);
 		return new ResponseEntity<>(emailModel, HttpStatus.CREATED);
